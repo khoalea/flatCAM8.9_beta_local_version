@@ -121,3 +121,4 @@ python3 -m pip install -r requirements.txt
 
 - run FlatCAM
 python3 FlatCAM.py
+# flatCAM8.9_beta_local_version
