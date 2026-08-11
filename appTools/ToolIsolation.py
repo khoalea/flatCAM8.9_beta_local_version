@@ -1184,6 +1184,13 @@ class ToolIsolation(AppTool, Gerber):
         tool_type = 'V'
         # look in database tools
         for db_tool, db_tool_val in tools_db_dict.items():
+            # entries written by an incompatible/newer Tools DB schema won't have these
+            # top-level keys (e.g. imported tool libraries); skip them instead of crashing
+            if not all(k in db_tool_val for k in ('offset', 'offset_value', 'type', 'tool_type', 'tooldia', 'data')):
+                continue
+            if not all(k in db_tool_val['data'] for k in ('tol_min', 'tol_max', 'tool_target')):
+                continue
+
             offset = db_tool_val['offset']
             offset_val = db_tool_val['offset_value']
             typ = db_tool_val['type']

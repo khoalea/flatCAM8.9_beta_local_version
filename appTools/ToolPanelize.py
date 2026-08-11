@@ -361,8 +361,8 @@ class Panelize(AppTool):
                     obj_fin.zeros = panel_source_obj.zeros
                     obj_fin.units = panel_source_obj.units
                     app_obj.inform.emit('%s' % _("Generating panel ... Adding the source code."))
-                    obj_fin.source_file = self.app.export.export_excellon(obj_name=self.outname, filename=None,
-                                                                          local_use=obj_fin, use_thread=False)
+                    obj_fin.source_file = self.app.f_handlers.export_excellon(obj_name=self.outname, filename=None,
+                                                                               local_use=obj_fin, use_thread=False)
                     app_obj.proc_container.update_view_text('')
 
                 def job_init_geometry(obj_fin, app_obj):
